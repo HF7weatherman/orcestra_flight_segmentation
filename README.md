@@ -108,7 +108,7 @@ For the first version of the segmentation of HALO research flights, one or more 
 | descent      | segments | assigned to straight legs or circles during which the aircraft altitude was decreased systematically by more than a few meters |
 | ec_track     | segments | assigned to straight legs during which the aircraft followed the EarthCare track. Aircraft and EarthCare flight direction can be the same or opposite. |
 | ec_underpass | events | assigned to events where the aircraft flew as close as possible under the EarthCARE satellite |
-| meteor_coordination | segments | assigned to segments during which HALO flew around or in the vicinity of the Meteor research vessel |
+| meteor_coordination | segments | assigned to segments during which HALO flew around or in the vicinity of the Meteor research vessel; note that in the case of long segments, this characterization may only be apt for a smaller time interval within the segment in which case further subsampling may be done by checking for an `meteor_overpass` event. |
 | meteor_overpass | events | assigned to events where the aircraft flew roughly over the Meteor research vessel |
 | mim_overpass | events | assigned to events where the aircraft flew roughly over the Meteorological Institute in Munich |
 | pace_track | segments | assigned to straight legs during which the aircraft followed the PACE track; note that measurements taken in other segments may also be colocated with PACE due to the satellite's wide swath. |
