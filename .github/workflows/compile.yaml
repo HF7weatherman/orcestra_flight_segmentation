@@ -37,7 +37,7 @@ jobs:
           popd
           ipfs --version
         env:
-          IPFS_VERSION: v0.32.1
+          IPFS_VERSION: v0.40.1
       - name: init IPFS
         run: |
           ipfs init --profile server,announce-off

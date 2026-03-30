@@ -23,7 +23,7 @@ def get_sondes_l2(flight_id):
     import fsspec
     import json
     import pandas as pd
-    root = "ipfs://QmVX8jNDXSFYXju3BmiemvaUYs3VDF1iMCcKyPLQYe3FuG"
+    root = "ipfs://QmZt6716gkTQoREiNdvzWdVpAJ8h2eq3zbR16vWuLYKXCt"
     day_folder = root + "/Level_2/" + flight_id
     protocol = day_folder.split(":")[0]
     fs = fsspec.filesystem(protocol)
@@ -64,7 +64,7 @@ def get_overpass_track(a_track, b_track, a_lon="lon", a_lat="lat", b_lon="lon", 
     """
     from orcestra.flightplan import geod
     a = a_track.sel(time=slice(*b_track.time[[0, -1]]))
-    b = b_track.interp(time=a.time)
+    b = b_track.interp(time=a.time.astype(b_track.time.dtype))
     _, _, dist = geod.inv(b[b_lon], b[b_lat], a[a_lon], a[a_lat])
     i = dist.argmin()
 
