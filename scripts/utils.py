@@ -23,7 +23,7 @@ def get_sondes_l2(flight_id):
     import fsspec
     import json
     import pandas as pd
-    root = "ipfs://QmVX8jNDXSFYXju3BmiemvaUYs3VDF1iMCcKyPLQYe3FuG"
+    root = "ipfs://QmZt6716gkTQoREiNdvzWdVpAJ8h2eq3zbR16vWuLYKXCt"
     day_folder = root + "/Level_2/" + flight_id
     protocol = day_folder.split(":")[0]
     fs = fsspec.filesystem(protocol)
