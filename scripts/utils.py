@@ -302,19 +302,23 @@ def wgs84_altitude_landing(flight_id, ds):
     return wgs84_altitude_landing
 
 
-def get_takeoff_landing(flight_id, ds):
+def get_takeoff_landing(flight_id, ds, min_duration=None):
     """
     Detect take-off and landing for the airport on Sal and Barbados
     which are located at about 89m and 8m above WGS84 respectively.
     """
     import numpy as np
+
+    if min_duration is None:
+        min_duration = np.timedelta64(15, "m")
+
     takeoff_alt = wgs84_altitude_takeoff(flight_id, ds)
     landing_alt = wgs84_altitude_landing(flight_id, ds)    
     takeoff = ds["time"].where(ds.alt > takeoff_alt, drop=True)[0].values
     if len(ds["time"].where((ds.alt <= landing_alt) & (ds.time > takeoff), drop=True)) == 0: # handle exception of missing BAHAMAS data at end of flight
         landing = ds["time"][-1].values
     else:
-        landing = ds["time"].where((ds.alt <= landing_alt) & (ds.time > takeoff), drop=True)[0].values
+        landing = ds["time"].where((ds.alt <= landing_alt) & (ds.time > takeoff + min_duration), drop=True)[0].values
     duration = (landing - takeoff).astype("timedelta64[m]").astype(int)
     return takeoff, landing, duration
 
