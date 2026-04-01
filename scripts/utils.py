@@ -1,7 +1,7 @@
 # some untility functions for defining segments
 
 __all__ = [
-    "get_sondes_l1",
+    "get_sondes_l2",
     "get_overpass_point",
     "plot_overpass_point",
     "get_overpass_track",
@@ -19,27 +19,20 @@ __all__ = [
     "ransac_fit_circle",
 ]
 
-
-def get_sondes_l1(flight_id):
+def get_sondes_l2(flight_id):
     import fsspec
-    import xarray as xr
-    import numpy as np
+    import json
     import pandas as pd
-    #root = "ipns://latest.orcestra-campaign.org/products/HALO/dropsondes/Level_1"
-    root = "ipfs://QmVMtDX1fZfL3SgNaXXt1wtW3htnC2vFbzx2ENN1cxrzSx"
-    day_folder = root + "/" + flight_id
+    root = "ipfs://QmZt6716gkTQoREiNdvzWdVpAJ8h2eq3zbR16vWuLYKXCt"
+    day_folder = root + "/Level_2/" + flight_id
     protocol = day_folder.split(":")[0]
     fs = fsspec.filesystem(protocol)
-    filenames = fs.glob(day_folder + "/*.nc")
-    datasets = []
-    for filename in filenames:
-        try:
-            datasets.append(xr.open_dataset(fsspec.open_local(f"simplecache::{protocol}://{filename}"), engine="netcdf4"))
-        except IOError:
-            print(f"cannot read {filename}.")
-    lt, sonde_id = zip(*[(d["launch_time"].values, d.attrs["SondeId"]) for d in datasets])
-    return xr.Dataset({"launch_time": (["sonde_id"], list(lt)),
-                       "sonde_id": (["sonde_id"], list(sonde_id))})
+    filenames = [fn.split("/")[-1] + "/.zattrs" for fn in fs.ls(day_folder, detail=False)]
+    m = fsspec.get_mapper(day_folder)
+    zattrs = [json.loads(v) for v in m.getitems(filenames).values()]
+    df = pd.DataFrame.from_records(zattrs)[["sonde_ID", "sonde_time"]]
+    df["sonde_time"] = pd.to_datetime(df["sonde_time"])
+    return df.sort_values("sonde_time").set_index("sonde_ID").to_xarray().rename({"sonde_ID": "sonde_id", "sonde_time": "launch_time"})
 
 def get_overpass_point(ds, target_lat, target_lon):
     import numpy as np
@@ -71,7 +64,7 @@ def get_overpass_track(a_track, b_track, a_lon="lon", a_lat="lat", b_lon="lon", 
     """
     from orcestra.flightplan import geod
     a = a_track.sel(time=slice(*b_track.time[[0, -1]]))
-    b = b_track.interp(time=a.time)
+    b = b_track.interp(time=a.time.astype(b_track.time.dtype))
     _, _, dist = geod.inv(b[b_lon], b[b_lat], a[a_lon], a[a_lat])
     i = dist.argmin()
 
@@ -309,19 +302,23 @@ def wgs84_altitude_landing(flight_id, ds):
     return wgs84_altitude_landing
 
 
-def get_takeoff_landing(flight_id, ds):
+def get_takeoff_landing(flight_id, ds, min_duration=None):
     """
     Detect take-off and landing for the airport on Sal and Barbados
     which are located at about 89m and 8m above WGS84 respectively.
     """
     import numpy as np
+
+    if min_duration is None:
+        min_duration = np.timedelta64(15, "m")
+
     takeoff_alt = wgs84_altitude_takeoff(flight_id, ds)
     landing_alt = wgs84_altitude_landing(flight_id, ds)    
     takeoff = ds["time"].where(ds.alt > takeoff_alt, drop=True)[0].values
     if len(ds["time"].where((ds.alt <= landing_alt) & (ds.time > takeoff), drop=True)) == 0: # handle exception of missing BAHAMAS data at end of flight
         landing = ds["time"][-1].values
     else:
-        landing = ds["time"].where((ds.alt <= landing_alt) & (ds.time > takeoff), drop=True)[0].values
+        landing = ds["time"].where((ds.alt <= landing_alt) & (ds.time > takeoff + min_duration), drop=True)[0].values
     duration = (landing - takeoff).astype("timedelta64[m]").astype(int)
     return takeoff, landing, duration
 

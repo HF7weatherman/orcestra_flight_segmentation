@@ -49,7 +49,7 @@ ds = get_navdata_HALO(flight_id)
 ### Get dropsonde launch times
 
 ```python
-drops = get_sondes_l1(flight_id)
+drops = get_sondes_l2(flight_id)
 ds_drops = ds.sel(time=drops.launch_time, method="nearest").swap_dims({"sonde_id": "time"})
 ```
 
@@ -109,7 +109,7 @@ plt.scatter(ds_drops.lon, ds_drops.lat, s=10, c="k", label="dropsondes")
 plt.plot(ec_track.lon, ec_track.lat, c='C1', ls='dotted')
 plt.plot(ds.lon.sel(time=t_ec, method="nearest"), ds.lat.sel(time=t_ec, method="nearest"), marker="*", ls=":", label="EC meeting point")
 if pace_track: plt.plot(pace_track.lon, pace_track.lat, c="C2", ls=":", label="PACE track")
-if meteor_track: plt.plot(meteor_track.lon, meteor_track.lat, c="C4", ls="-.", label="METEOR track")
+plt.plot(meteor_track.lon, meteor_track.lat, c="C4", ls="-.", label="METEOR track")
 plt.xlabel("longitude / °")
 plt.ylabel("latitude / °")
 plt.legend();
@@ -176,9 +176,9 @@ seg5 = (
 
 seg6 = (
     slice("2024-08-31T09:45:02", "2024-08-31T11:05:50"),
-    ["straight_leg", "ec_track"],
+    ["straight_leg", "ec_track", "meteor_coordination"],
     "ec_track_southward_4",
-    ["includes one drop sonde launch at southmost point"],
+    ["includes one drop sonde launch at southmost point", "includes meteor overpass"],
 )
 
 seg7 = (
@@ -225,7 +225,7 @@ seg12 = (
 
 seg13 = (
     slice("2024-08-31T12:52:25", "2024-08-31T13:48:01"),
-    ["circle", "circle_counterclockwise"],
+    ["circle", "circle_counterclockwise", "meteor_coordination"],
     "circle_mid",
     ["irregularity: turbulence with up to plus/minus 4.5 degree roll angle deviation"],
     [str(ds_drops.sel(time="2024-08-31T14:05:21").sonde_id.values)],
@@ -370,6 +370,7 @@ The EC underpass event can be added to a list of events via the function `ec_eve
 
 ```python
 events = [
+    meteor_event(ds, meteor_track, seg=seg6),
     meteor_event(ds, meteor_track),
     ec_event(ds, ec_track),
 ]

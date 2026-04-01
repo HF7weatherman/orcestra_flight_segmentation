@@ -1,0 +1,79 @@
+name: RF24
+mission: MAESTRO
+flight_id: RF24
+orcestra_flight_id: ATR-20240910
+safire_flight_id: as240046
+date: 2024-09-10
+contacts:
+- name: Sandrine Bony
+  email: sandrine.bony@lmd.ipsl.fr
+- name: "Julien Delano\xEB"
+  email: julien.delanoe@latmos.ipsl.fr
+- name: Marie Lothon
+  email: marie.lothon@aero.obs-mip.fr
+flight_report: https://observations.ipsl.fr/aeris/maestro-data/REPORTS/ATR/2024/20240910/ATR-240910.pdf
+takeoff: 2024-09-10 17:36:14.990000
+landing: 2024-09-10 20:45:07.860000
+events: null
+remarks: null
+segments:
+- kind: leg
+  name: L1
+  note: 141m
+  start: 2024-09-10 17:42:15
+  end: 2024-09-10 17:53:53
+- kind: leg
+  name: L2
+  note: 143m
+  start: 2024-09-10 17:56:11
+  end: 2024-09-10 18:09:34
+- kind: leg
+  name: L3
+  note: 140m
+  start: 2024-09-10 18:10:22
+  end: 2024-09-10 18:12:23
+- kind: leg
+  name: L4
+  note: 144m
+  start: 2024-09-10 18:17:06
+  end: 2024-09-10 18:37:02
+- kind: leg
+  name: L5
+  note: 150m
+  start: 2024-09-10 18:38:16
+  end: 2024-09-10 18:40:43
+- kind: leg
+  name: L6
+  note: 364m
+  start: 2024-09-10 18:49:07
+  end: 2024-09-10 19:00:46
+- kind: leg
+  name: L7
+  note: 331m
+  start: 2024-09-10 19:01:16
+  end: 2024-09-10 19:04:47
+- kind: leg
+  name: L8
+  note: 334m
+  start: 2024-09-10 19:09:08
+  end: 2024-09-10 19:31:21
+- kind: leg
+  name: H1
+  note: 5794m
+  start: 2024-09-10 20:04:42
+  end: 2024-09-10 20:32:28
+- kind: ascent
+  name: A1
+  note: null
+  start: 2024-09-10 18:41:12.900000
+  end: 2024-09-10 18:42:22.400000
+- kind: ascent
+  name: A2
+  note: sounding
+  start: 2024-09-10 19:31:52.690000
+  end: 2024-09-10 19:54:53.540000
+- kind: descent
+  name: D1
+  note: null
+  start: 2024-09-10 20:33:24.090000
+  end: 2024-09-10 20:42:24.280000

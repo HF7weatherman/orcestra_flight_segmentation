@@ -1,0 +1,94 @@
+name: RF20
+mission: MAESTRO
+flight_id: RF20
+orcestra_flight_id: ATR-20240902
+safire_flight_id: as240042
+date: 2024-09-02
+contacts:
+- name: Sandrine Bony
+  email: sandrine.bony@lmd.ipsl.fr
+- name: "Julien Delano\xEB"
+  email: julien.delanoe@latmos.ipsl.fr
+- name: Marie Lothon
+  email: marie.lothon@aero.obs-mip.fr
+flight_report: https://observations.ipsl.fr/aeris/maestro-data/REPORTS/ATR/2024/20240902/ATR-240902.pdf
+takeoff: 2024-09-02 19:31:26.490000
+landing: 2024-09-02 22:55:00.030000
+events: null
+remarks: null
+segments:
+- kind: leg
+  name: L1
+  note: 142m
+  start: 2024-09-02 19:36:13
+  end: 2024-09-02 19:39:34
+- kind: leg
+  name: L2
+  note: 140m
+  start: 2024-09-02 19:40:50
+  end: 2024-09-02 20:11:09
+- kind: leg
+  name: L3
+  note: 296m
+  start: 2024-09-02 20:11:59
+  end: 2024-09-02 20:17:46
+- kind: leg
+  name: L4
+  note: 307m
+  start: 2024-09-02 20:21:05
+  end: 2024-09-02 20:54:47
+- kind: leg
+  name: L5
+  note: 306m
+  start: 2024-09-02 20:56:25
+  end: 2024-09-02 20:58:52
+- kind: leg
+  name: T1
+  note: 783m
+  start: 2024-09-02 21:02:31
+  end: 2024-09-02 21:19:48
+- kind: leg
+  name: B1
+  note: 686m
+  start: 2024-09-02 21:23:11
+  end: 2024-09-02 21:25:21
+- kind: leg
+  name: B2
+  note: 655m
+  start: 2024-09-02 21:25:40
+  end: 2024-09-02 21:42:36
+- kind: leg
+  name: H1
+  note: 2208m
+  start: 2024-09-02 21:56:00
+  end: 2024-09-02 22:11:53
+- kind: leg
+  name: L6
+  note: 304m
+  start: 2024-09-02 22:21:59
+  end: 2024-09-02 22:41:41
+- kind: leg
+  name: T2
+  note: 792m
+  start: 2024-09-02 22:44:17
+  end: 2024-09-02 22:47:08
+- kind: ascent
+  name: A1
+  note: null
+  start: 2024-09-02 20:59:28.390000
+  end: 2024-09-02 21:00:58.270000
+- kind: VAD
+  name: V1
+  note: VAD
+  start: 2024-09-02 22:12:15.310000
+  end: 2024-09-02 22:14:44.160000
+- kind: ascent
+  name: A2
+  note: sounding
+  start: 2024-09-02 21:43:08.200000
+  end: 2024-09-02 21:53:58.120000
+- kind: descent
+  name: D1
+  note: sounding
+  start: 2024-09-02 22:15:10.470000
+  end: 2024-09-02 22:21:29.440000

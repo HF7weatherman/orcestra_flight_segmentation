@@ -1,0 +1,69 @@
+name: RF14
+mission: MAESTRO
+flight_id: RF14
+orcestra_flight_id: ATR-20240826b
+safire_flight_id: as240036
+date: 2024-08-26
+contacts:
+- name: Sandrine Bony
+  email: sandrine.bony@lmd.ipsl.fr
+- name: "Julien Delano\xEB"
+  email: julien.delanoe@latmos.ipsl.fr
+- name: Marie Lothon
+  email: marie.lothon@aero.obs-mip.fr
+flight_report: https://observations.ipsl.fr/aeris/maestro-data/REPORTS/ATR/2024/20240826/ATR-240826.pdf
+takeoff: 2024-08-26 17:52:45.550000
+landing: 2024-08-26 20:52:44.070000
+events: null
+remarks: null
+segments:
+- kind: leg
+  name: L1
+  note: 138m
+  start: 2024-08-26 17:59:36
+  end: 2024-08-26 18:07:13
+- kind: leg
+  name: L2
+  note: 140m
+  start: 2024-08-26 18:09:10
+  end: 2024-08-26 18:35:30
+- kind: leg
+  name: B1
+  note: 529m
+  start: 2024-08-26 18:37:22
+  end: 2024-08-26 18:41:50
+- kind: leg
+  name: B2
+  note: 527m
+  start: 2024-08-26 18:46:14
+  end: 2024-08-26 18:49:08
+- kind: leg
+  name: B3
+  note: 531m
+  start: 2024-08-26 18:54:52
+  end: 2024-08-26 19:12:05
+- kind: leg
+  name: B4
+  note: 535m
+  start: 2024-08-26 19:16:40
+  end: 2024-08-26 19:39:28
+- kind: leg
+  name: H1
+  note: 6482m
+  start: 2024-08-26 20:14:57
+  end: 2024-08-26 20:39:27
+- kind: ascent
+  name: A1
+  note: sounding
+  start: 2024-08-26 19:39:41.680000
+  end: 2024-08-26 20:09:36.310000
+- kind: VAD
+  name: V1
+  note: VAD
+  start: 2024-08-26 20:39:34.090000
+  end: 2024-08-26 20:42:05.050000
+- kind: descent
+  name: D1
+  note: sounding
+  start: 2024-08-26 20:42:32.780000
+  end: 2024-08-26 20:50:32

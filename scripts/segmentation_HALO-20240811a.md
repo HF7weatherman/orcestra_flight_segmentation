@@ -48,7 +48,7 @@ ds = get_navdata_HALO(flight_id)
 ### Get dropsonde launch times
 
 ```python
-drops = get_sondes_l1(flight_id)
+drops = get_sondes_l2(flight_id)
 ds_drops = ds.sel(time=drops.launch_time, method="nearest").swap_dims({"sonde_id": "time"})
 ```
 

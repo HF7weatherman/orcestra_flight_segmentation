@@ -1,5 +1,5 @@
 .DS_Store
 __pycache__
 .ipynb_checkpoints
-/flight_segment_files
+/flight_segment_files/HALO*
 /reports

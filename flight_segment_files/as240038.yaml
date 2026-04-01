@@ -1,0 +1,109 @@
+name: RF16
+mission: MAESTRO
+flight_id: RF16
+orcestra_flight_id: ATR-20240829
+safire_flight_id: as240038
+date: 2024-08-29
+contacts:
+- name: Sandrine Bony
+  email: sandrine.bony@lmd.ipsl.fr
+- name: "Julien Delano\xEB"
+  email: julien.delanoe@latmos.ipsl.fr
+- name: Marie Lothon
+  email: marie.lothon@aero.obs-mip.fr
+flight_report: https://observations.ipsl.fr/aeris/maestro-data/REPORTS/ATR/2024/20240829/ATR-240829.pdf
+takeoff: 2024-08-29 13:52:13.140000
+landing: 2024-08-29 17:40:57.880000
+events: null
+remarks: null
+segments:
+- kind: leg
+  name: B1
+  note: 798m
+  start: 2024-08-29 13:56:05
+  end: 2024-08-29 13:58:52
+- kind: leg
+  name: L1
+  note: 148m
+  start: 2024-08-29 14:02:05
+  end: 2024-08-29 14:08:22
+- kind: leg
+  name: B2
+  note: 565m
+  start: 2024-08-29 14:09:46
+  end: 2024-08-29 14:15:53
+- kind: leg
+  name: L2
+  note: 244m
+  start: 2024-08-29 14:17:05
+  end: 2024-08-29 14:22:11
+- kind: leg
+  name: B3
+  note: 564m
+  start: 2024-08-29 14:23:12
+  end: 2024-08-29 14:28:09
+- kind: leg
+  name: L3
+  note: 243m
+  start: 2024-08-29 14:29:27
+  end: 2024-08-29 14:34:00
+- kind: leg
+  name: B4
+  note: 563m
+  start: 2024-08-29 14:35:42
+  end: 2024-08-29 14:40:31
+- kind: leg
+  name: L4
+  note: 143m
+  start: 2024-08-29 14:46:14
+  end: 2024-08-29 15:01:54
+- kind: leg
+  name: H1
+  note: 6478m
+  start: 2024-08-29 15:41:30
+  end: 2024-08-29 15:48:14
+- kind: leg
+  name: H2
+  note: 6800m
+  start: 2024-08-29 15:52:20
+  end: 2024-08-29 15:55:59
+- kind: leg
+  name: B5
+  note: 623m
+  start: 2024-08-29 16:22:14
+  end: 2024-08-29 16:37:21
+- kind: leg
+  name: L5
+  note: 237m
+  start: 2024-08-29 16:39:25
+  end: 2024-08-29 16:50:00
+- kind: leg
+  name: B6
+  note: 590m
+  start: 2024-08-29 16:52:48
+  end: 2024-08-29 17:01:52
+- kind: leg
+  name: L6
+  note: 256m
+  start: 2024-08-29 17:03:05
+  end: 2024-08-29 17:12:50
+- kind: leg
+  name: B7
+  note: 541m
+  start: 2024-08-29 17:15:10
+  end: 2024-08-29 17:23:51
+- kind: leg
+  name: L7
+  note: 248m
+  start: 2024-08-29 17:25:16
+  end: 2024-08-29 17:32:17
+- kind: ascent
+  name: A1
+  note: sounding
+  start: 2024-08-29 15:02:13.570000
+  end: 2024-08-29 15:35:26.590000
+- kind: descent
+  name: D1
+  note: sounding
+  start: 2024-08-29 15:57:52.600000
+  end: 2024-08-29 16:19:28.380000

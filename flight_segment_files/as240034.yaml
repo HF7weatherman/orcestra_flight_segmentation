@@ -1,0 +1,64 @@
+name: RF12
+mission: MAESTRO
+flight_id: RF12
+orcestra_flight_id: ATR-20240825
+safire_flight_id: as240034
+date: 2024-08-25
+contacts:
+- name: Sandrine Bony
+  email: sandrine.bony@lmd.ipsl.fr
+- name: "Julien Delano\xEB"
+  email: julien.delanoe@latmos.ipsl.fr
+- name: Marie Lothon
+  email: marie.lothon@aero.obs-mip.fr
+flight_report: https://observations.ipsl.fr/aeris/maestro-data/REPORTS/ATR/2024/20240825/ATR-240825.pdf
+takeoff: 2024-08-25 19:21:56.170000
+landing: 2024-08-25 22:41:33.120000
+events: null
+remarks: null
+segments:
+- kind: leg
+  name: L1
+  note: 153m
+  start: 2024-08-25 19:33:08
+  end: 2024-08-25 20:05:22
+- kind: leg
+  name: B1
+  note: 823m
+  start: 2024-08-25 20:09:03
+  end: 2024-08-25 20:45:52
+- kind: leg
+  name: B2
+  note: 825m
+  start: 2024-08-25 20:49:01
+  end: 2024-08-25 21:22:05
+- kind: leg
+  name: H1
+  note: 6160m
+  start: 2024-08-25 21:55:13
+  end: 2024-08-25 22:07:56
+- kind: leg
+  name: H2
+  note: 6500m
+  start: 2024-08-25 22:12:10
+  end: 2024-08-25 22:21:10
+- kind: ascent
+  name: A1
+  note: sounding
+  start: 2024-08-25 21:22:20.660000
+  end: 2024-08-25 21:50:44.100000
+- kind: VAD
+  name: V1
+  note: VAD
+  start: 2024-08-25 22:22:33.790000
+  end: 2024-08-25 22:25:17.030000
+- kind: VAD
+  name: V2
+  note: VAD
+  start: 2024-08-25 22:27:46.120000
+  end: 2024-08-25 22:30:20.980000
+- kind: descent
+  name: D1
+  note: sounding
+  start: 2024-08-25 22:31:06.160000
+  end: 2024-08-25 22:41:14.180000

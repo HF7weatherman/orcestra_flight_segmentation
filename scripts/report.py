@@ -196,24 +196,19 @@ def sonde_info_from_yaml(filehandle):
     return yaml.load(filehandle, Loader=yaml.SafeLoader)
 
 def sonde_info_from_ipfs(flight_id):
-    import fsspec
     import pandas as pd
-    root = "ipns://latest.orcestra-campaign.org/products/HALO/dropsondes/Level_1"
-    day_folder = root + "/" + flight_id
-    fs = fsspec.filesystem(day_folder.split(":")[0])
+    from utils import get_sondes_l2
     try:
-        filenames = fs.glob(day_folder + "/*.nc")
-    except FileNotFoundError:
-        filenames = []
-    datasets = [xr.open_dataset(fsspec.open_local("simplecache::ipns://" + filename), engine="netcdf4")
-                for filename in filenames if fs.size("ipns://" + filename)]
-    return [ {
-        "launch_time": pd.Timestamp(d["launch_time"].values).to_pydatetime(warn=False),
+        ds = get_sondes_l2(flight_id)
+        return [ {
+        "launch_time": pd.Timestamp(str(ds.isel({"sonde_id": i}).launch_time.values)).to_pydatetime(warn=False),
         "platform": "HALO",
-        "sonde_id": d.attrs["SondeId"],
+        "sonde_id": str(ds.isel({"sonde_id": i}).sonde_id.values),
         "flag": "ALL_FLAGS",
-    }
-            for d in datasets]
+        } for i in range(ds.sizes["sonde_id"])]
+    except FileNotFoundError:
+        print(f"No dropsondes on flight {flight_id}")
+        return []
 
 def _main():
     basedir = os.path.abspath(os.path.dirname(__file__))

@@ -1,0 +1,36 @@
+name: Daily check for ATR segmentation changes
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 0 * * *
+
+jobs:
+  daily_checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: mamba-org/setup-micromamba@v1
+        with:
+          micromamba-version: '2.0.4-0'
+          environment-file: environment.yaml
+          cache-environment: true
+          post-cleanup: 'all'
+
+      - name: Get ATR segmentation
+        run: |
+          python3 scripts/get_atr_segments.py
+        shell: micromamba-shell {0}
+
+      - name: Commit and push changes
+        run: |
+          git diff --exit-code && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add flight_segment_files/as24*.yaml
+          git commit -m "Automated commit from daily check for ATR updates" || echo "No changes to commit"
+          git push origin main

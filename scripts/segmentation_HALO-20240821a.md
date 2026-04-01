@@ -52,7 +52,7 @@ ds = get_navdata_HALO(flight_id)
 ### Get dropsonde launch times
 
 ```python
-drops = get_sondes_l1(flight_id)
+drops = get_sondes_l2(flight_id)
 ds_drops = ds.sel(time=drops.launch_time, method="nearest").swap_dims({"sonde_id": "time"})
 ```
 
@@ -178,7 +178,8 @@ seg6 = (
     slice("2024-08-21T14:09:58", "2024-08-21T15:06:16"),
     ["circle", "circle_clockwise", "meteor_coordination"],
     "circle_south",
-    ["irregularity: turbulence up to plus/minues 4 degree roll angle deviation"]
+    ["irregularity: turbulence up to plus/minues 4 degree roll angle deviation",
+    "remark: Meteor was located in northwestern quadrant of the circle"]
 )
 
 seg7 = (
@@ -308,6 +309,20 @@ plt.ylabel("latitude / °")
 plt.legend();
 ```
 
+```python
+seg = parse_segment(seg16)
+plt.plot(ds.lon.sel(time=slice(takeoff, landing)), ds.lat.sel(time=slice(takeoff, landing)))
+plt.plot(ds.lon.sel(time=seg["slice"]), ds.lat.sel(time=seg["slice"]), color='red', label="selected segment", zorder=10)
+plt.scatter(ds_drops.lon, ds_drops.lat, s=10, c="k", label="dropsondes")
+plt.plot(ec_track.lon, ec_track.lat, c='C1', ls='dotted')
+plt.plot(ds.lon.sel(time=t_ec, method="nearest"), ds.lat.sel(time=t_ec, method="nearest"),
+         marker="*", ls=":", label="EC meeting point", zorder=20)
+if pace_track: plt.plot(pace_track.lon, pace_track.lat, c="C2", ls=":", label="PACE track")
+plt.xlabel("longitude / °")
+plt.ylabel("latitude / °")
+plt.legend();
+```
+
 ## Events
 events are different from segments in having only **one** timestamp. Examples are the usual "EC meeting points" or station / ship overpasses. In general, events include a mandatory `event_id` and `time`, as well as optional statements on `name`, a list of `kinds`, the `distance` in meters, and a list of `remarks`. Possible `kinds`include:
 - `ec_underpass`
@@ -320,12 +335,7 @@ The `event_id` will be added when saving it to YAML.
 The EC underpass event can be added to a list of events via the function `ec_event`.
 
 ```python
-events = [meteor_event(ds, meteor_track)]
-events
-```
-
-```python
-events[0]['remarks'] = ["Meteor bypass during southern circle"]
+events = []
 events
 ```
 
@@ -358,8 +368,4 @@ for k, c in zip(['straight_leg', 'circle', ], ["C0", "C1"]):
             ax.plot(ds.lon.sel(time=t), ds.lat.sel(time=t), c=c, label=s["name"])
 ax.set_xlabel("longitude / °")
 ax.set_ylabel("latitude / °");
-```
-
-```python
-
 ```
